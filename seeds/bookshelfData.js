@@ -2,26 +2,46 @@ const { Bookshelf } = require('../models');
 
 const Bookshelfdata = [
   {
-    name: 'Printemps',
-    starting_date: 'April 20, 2021 07:00:00',
-    ending_date: 'June 21, 2021 17:00:00',
+    "Bookshelf_id": 1,
+    "genre": "Fantasy"
   },
   {
-    name: 'Sommer',
-    starting_date: 'June 22, 2021 09:00:00',
-    ending_date: 'September 22, 2021 22:00:00',
+    "Bookshelf_id": 2,
+    "genre": "Adventure"
   },
   {
-    name: 'Herfst',
-    starting_date: 'September 23, 2021 08:30:00',
-    ending_date: 'December 21, 2021 20:30:00',
+    "Bookshelf_id": 3,
+    "genre": "Horror"
   },
   {
-    name: 'Invierno',
-    starting_date: 'December 22, 2020 11:00:00',
-    ending_date: 'March 19, 2021 19:00:00',
+    "Bookshelf_id": 4,
+    "genre": "Science Fiction"
   },
-];
+  {
+    "Bookshelf_id": 5,
+    "genre": "Romance"
+  },
+  {
+    "Bookshelf_id": 6,
+    "genre": "Thriller"
+  },
+  {
+    "Bookshelf_id": 7,
+    "genre": "Dystopian"
+  },
+  {
+    "Bookshelf_id": 8,
+    "genre": "Mystery"
+  },
+  {
+    "Bookshelf_id": 9,
+    "genre": "Historical Fiction"
+  },
+  {
+    "Bookshelf_id": 10,
+    "genre": "Biography"
+  },
+]
 
 const seedBookshelf = () => Bookshelf.bulkCreate(Bookshelfdata);
 
