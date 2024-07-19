@@ -1,26 +1,26 @@
 const router = require('express').Router();
-const { Gallery, Painting } = require('../models');
+const { bookshelf, book } = require('../models');
 // Import the custom middleware
 const withAuth = require('../utils/auth');
 
-// GET all galleries for homepage
+// GET all bookshelves for homepage
 router.get('/', async (req, res) => {
   try {
-    const dbGalleryData = await Gallery.findAll({
+    const dbBookshelfData = await bookshelf.findAll({
       include: [
         {
-          model: Painting,
+          model: book,
           attributes: ['filename', 'description'],
         },
       ],
     });
 
-    const galleries = dbGalleryData.map((gallery) =>
-      gallery.get({ plain: true })
+    const bookshelves = dbBookshelfData.map((bookshelf) =>
+      bookshelf.get({ plain: true })
     );
 
     res.render('homepage', {
-      galleries,
+      bookshelves,
       loggedIn: req.session.loggedIn,
     });
   } catch (err) {
@@ -29,43 +29,42 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET one gallery
-// Use the custom middleware before allowing the user to access the gallery
-router.get('/gallery/:id', withAuth, async (req, res) => {
+// GET one bookshelf
+// Use the custom middleware before allowing the user to access the bookshelf
+router.get('/bookshelf/:id', withAuth, async (req, res) => {
   try {
-    const dbGalleryData = await Gallery.findByPk(req.params.id, {
+    const dbBookshelfData = await bookshelf.findByPk(req.params.id, {
       include: [
         {
-          model: Painting,
+          model: book,
           attributes: [
             'id',
             'title',
-            'artist',
-            'exhibition_date',
+            'author',
             'filename',
             'description',
           ],
         },
       ],
     });
-
-    const gallery = dbGalleryData.get({ plain: true });
-    res.render('gallery', { gallery, loggedIn: req.session.loggedIn });
+    
+    const bookshelf = dbBookshelfData.get({ plain: true });
+    res.render('bookshelf', { bookshelf, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 });
 
-// GET one painting
-// Use the custom middleware before allowing the user to access the painting
-router.get('/painting/:id', withAuth, async (req, res) => {
+// GET one book
+// Use the custom middleware before allowing the user to access the book
+router.get('/book/:id', withAuth, async (req, res) => {
   try {
-    const dbPaintingData = await Painting.findByPk(req.params.id);
+    const dbBookData = await book.findByPk(req.params.id);
+    
+    const book = dbBookData.get({ plain: true });
 
-    const painting = dbPaintingData.get({ plain: true });
-
-    res.render('painting', { painting, loggedIn: req.session.loggedIn });
+    res.render('book', { book, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
