@@ -162,3 +162,43 @@ img {
   align-content: flex-start;
   align-items: center;
 }
+
+.chat {
+ max-width: 80%;
+ padding-right: 20px;
+ padding-left: 20px;
+ color: white;
+ padding-top: 2px;
+ padding-bottom: 2px;
+ margin-left: 2px;
+ margin-right: 2px;
+ word-wrap: break-word;
+}
+
+.rightSideChat {
+  align-self: flex-end;
+  text-align: end;
+  background-color: #1086fe;;
+  border-radius: 25px;
+}
+
+.leftSideChat {
+  align-self: flex-start;
+  background-color: #262629;
+  text-align: start;
+  border-radius: 25px;
+}
+
+.chatForm {
+  visibility: hidden;
+  position: fixed;
+  bottom: 2.5vh;
+  margin-left: 12px;
+  background-color: #1f242a;
+  width: 230px;
+  opacity: 75%;
+}
+
+.span {
+  opacity: 40%;
+}

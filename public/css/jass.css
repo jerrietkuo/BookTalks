@@ -973,7 +973,7 @@ a:hover {
   text-align: center;
   display: inline-block;
   padding: 0.5rem 1.2rem;
-  margin: 0;
+  /* margin: 0; */
   text-decoration: none;
   font-size: 1rem;
   border-radius: 0.3rem;
@@ -1328,6 +1328,81 @@ form [type='radio'] {
   max-width: 100%;
 }
 
+.chatBox {
+  position: fixed;
+  right: 2vw;
+  bottom: 2vh;
+}
+
+.chatBoxBtn {
+  border-radius: 100%;
+  background-color: #000000;
+  height: 60px;
+  width: 60px;
+}
+
+.secretMessage {
+  visibility: hidden;
+  position: absolute;
+  background-color:#1a1a1a;
+  opacity: 75%;
+  color: white;
+  font-size:x-small;
+  padding: 5px;
+}
+
+.chatBox:hover > .secretMessage {
+  visibility: visible;
+  right: 105%;
+}
+
+#newMessageBox {
+  background-color: #1f242a;
+  visibility: hidden;
+  height: 400px;
+  width: 250px;
+  position: fixed;
+  right: 80px;
+  bottom: 2vh;
+  border-radius: 5%;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.358);
+}
+
+.messageBoxHeader {
+  position: fixed;
+  width: 250px;
+  opacity: 75%;
+  color: white;
+}
+
+.usersArea {
+  position: absolute;
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 270px;
+  max-height: 270px;
+  top: 100px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+.searchBar {
+  position: fixed;
+  background-color: #1f242a;
+  opacity: 75%;
+}
+
+.userBtn {
+  background-color: #1086fe;
+  margin: 2px;
+  color: white;
+}
 /* col-sm */
 @media screen and (min-width: 640px) {
   .col-sm-auto {
