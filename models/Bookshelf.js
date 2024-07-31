@@ -11,16 +11,8 @@ Bookshelf.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    genre: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
-    starting_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    ending_date: {
-      type: DataTypes.DATE,
       allowNull: false,
     },
   },

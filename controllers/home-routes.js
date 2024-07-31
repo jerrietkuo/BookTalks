@@ -7,10 +7,10 @@ const { Op } = require('sequelize');
 // GET all bookshelves for homepage
 router.get('/', async (req, res) => {
   try {
-    const dbBookshelfData = await bookshelf.findAll({
+    const dbBookshelfData = await Bookshelf.findAll({
       include: [
         {
-          model: book,
+          model: Book,
           attributes: ['filename', 'description'],
         },
       ],
@@ -73,10 +73,10 @@ router.get('/book/:id', withAuth, async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  // if (req.session.loggedIn) {
-  //   // res.redirect('/');
-  //   return;
-  // }
+  if (req.session.loggedIn) {
+    // res.redirect('/');
+    return;
+  }
 
   res.render('login');
 });
