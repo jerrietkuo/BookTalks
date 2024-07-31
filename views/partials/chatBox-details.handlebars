@@ -1,0 +1,24 @@
+<section class="chatBox">
+    <h5 class="secretMessage">Send message!</h5>
+    <button type="button" class="btn chatBoxBtn">🖍️</button>
+</section>
+
+<section id="newMessageBox">
+    <div class="messageBoxHeader">
+        <h5 class="m-2">New message</h5>
+        <div class="searchBar m-2 py-1">
+            <label for="users">To: </label>
+            <input id="users">
+        </div>
+    </div>
+    <div class="usersArea">
+
+    </div>
+    <form class="form chatForm">
+        <input id="chat">
+        <button type="submit">✉️</button>
+    </form>
+</section>
+
+{{!-- Use this wherever we want out chatbox:
+    {{> chatBox-details}} --}}
