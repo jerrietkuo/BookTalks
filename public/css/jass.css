@@ -1399,8 +1399,10 @@ form [type='radio'] {
 }
 
 .userBtn {
+  width: 99%;
   background-color: #1086fe;
   margin: 2px;
+  align-self: center;
   color: white;
 }
 /* col-sm */
