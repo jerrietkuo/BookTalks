@@ -15,12 +15,8 @@ Book.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    artist: {
+    author: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
-    exhibition_date: {
-      type: DataTypes.DATE,
       allowNull: false,
     },
     filename: {
