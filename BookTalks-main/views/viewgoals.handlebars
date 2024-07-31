@@ -1,0 +1,10 @@
+{{!-- views/goals/new.handlebars --}}
+{{> navbar}}
+<h2>Create New Goal</h2>
+<form action="/goals" method="POST">
+  <label for="year">Year:</label>
+  <input type="number" name="year" required><br>
+  <label for="targetBooks">Target Books:</label>
+  <input type="number" name="targetBooks" required><br>
+  <button type="submit">Create Goal</button>
+</form>

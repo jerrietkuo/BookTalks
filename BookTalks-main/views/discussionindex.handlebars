@@ -1,0 +1,8 @@
+
+{{> navbar}}
+<h2>All Discussions</h2>
+<ul>
+  {{#each discussions}}
+    <li><a href="/discussions/{{id}}">{{title}}</a> by {{author}}</li>
+  {{/each}}
+</ul>

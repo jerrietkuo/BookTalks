@@ -1,0 +1,19 @@
+{{> navbar}}
+<h2>Reading Goals</h2>
+<ul>
+  {{#each goals}}
+    <li>
+      <h3>{{year}}</h3>
+      <p>Target Books: {{targetBooks}}</p>
+      <p>Books Read: {{booksRead}}</p>
+      <div class="progress-bar">
+        <div class="progress" style="width: {{progressPercentage booksRead targetBooks}}%;"></div>
+      </div>
+      <ul>
+        {{#each books}}
+          <li>{{title}} by {{author}} ({{pages}} pages, {{pagesRead}} pages read)</li>
+        {{/each}}
+      </ul>
+    </li>
+  {{/each}}
+</ul>
