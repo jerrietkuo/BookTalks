@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Museum</title>
+  <title>BookTalks</title>
   <link rel="stylesheet" type="text/css" href="/css/jass.css">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -13,7 +13,13 @@
 
 <body>
   <header>
-    <h1>Welcome to the Four Seasons Museum</h1>
+    <div class="search-container">
+      <form id="searchForm">
+        <input type="text" placeholder="Search for books.." name="q" id="searchInput">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+    <h1>Welcome to BookTalks</h1>
   </header>
   <nav>
     <a href="/">Home</a>
@@ -36,6 +42,7 @@
   {{/if}}
   {{> chatBox-details}}
   <script src="/js/chat.js"></script>
+  <script src="/js/script.js"></script>
 </body>
 
 </html>
