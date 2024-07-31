@@ -1357,13 +1357,13 @@ form [type='radio'] {
 }
 
 #newMessageBox {
-  background-color: white;
+  background-color: #1f242a;
   visibility: hidden;
   height: 400px;
   width: 250px;
   position: fixed;
   right: 80px;
-  bottom: 0vh;
+  bottom: 2vh;
   border-radius: 5%;
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.358);
 }
@@ -1371,6 +1371,8 @@ form [type='radio'] {
 .messageBoxHeader {
   position: fixed;
   width: 250px;
+  opacity: 75%;
+  color: white;
 }
 
 .usersArea {
@@ -1381,16 +1383,25 @@ form [type='radio'] {
   max-height: 270px;
   top: 100px;
   overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.searchBar {
-  border-bottom: black 2px solid;
-  position: fixed;
 
+.searchBar {
+  position: fixed;
+  background-color: #1f242a;
+  opacity: 75%;
 }
 
 .userBtn {
-  background-color: white;
+  background-color: #1086fe;
+  margin: 2px;
+  color: white;
 }
 /* col-sm */
 @media screen and (min-width: 640px) {

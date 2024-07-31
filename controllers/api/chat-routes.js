@@ -7,27 +7,28 @@ const { Op } = require('sequelize');
 //chat endpoints
 
 router.get('/users', async (req, res) => {
-    var userList = []
-    const dbUserData = await User.findOne({
-        where: {username: req.session.username},
-        raw: true,
-        attributes: ['id']
-    })
+    var userList = [];
+    try{
+        const response = await User.findAll({
+            where: {username: { [Op.ne]: req.session.username}},
+            attributes: ['username'],
+            raw: true,
+        })
 
-    var moreUsers = await User.findAll({
-        where: {username: { [Op.ne]: req.session.username}},
-        raw: true,
-        attributes: ['username'],
-    })
+        if(!response){
+            console.log(response)
+            throw new Error('failed to retrieve user list');
+        }
+        
+        userList = await response;
 
-    userList.push(moreUsers);
-
-    if(userList){
-        res.send(userList);
-    // return userList;
-    } else {
-        res.status(500).json('sever error')
+    } catch(err){
+        console.log(err);
+        res.status(500).json([]);
+        return;
     }
+
+    res.status(200).json(userList);
 })
 
 router.get('/metadata/:u', async (req, res) => {
