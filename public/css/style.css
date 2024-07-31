@@ -162,3 +162,24 @@ img {
   align-content: flex-start;
   align-items: center;
 }
+
+.chat {
+ width: 100%;
+ padding-right: 30px;
+ padding-left: 30px;
+}
+
+.rightSideChat {
+  text-align: end;
+}
+
+.leftSideChat {
+  text-align: start;
+}
+
+.chatForm {
+  visibility: hidden;
+  position: fixed;
+  bottom: 2px;
+  margin-left: 12px;
+}

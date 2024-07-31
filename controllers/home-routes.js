@@ -1,7 +1,8 @@
 const router = require('express').Router();
-const { bookshelf, book } = require('../models');
+const { Bookshelf, Book, Conversations, Chat, User } = require('../models');
 // Import the custom middleware
 const withAuth = require('../utils/auth');
+const { Op } = require('sequelize');
 
 // GET all bookshelves for homepage
 router.get('/', async (req, res) => {
@@ -72,10 +73,10 @@ router.get('/book/:id', withAuth, async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/');
-    return;
-  }
+  // if (req.session.loggedIn) {
+  //   // res.redirect('/');
+  //   return;
+  // }
 
   res.render('login');
 });
