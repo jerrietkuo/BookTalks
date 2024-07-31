@@ -1,0 +1,18 @@
+{{> navbar}}
+<h2>{{title}}</h2>
+<p>{{content}}</p>
+<p>by {{author}}</p>
+<hr>
+<h3>Posts</h3>
+<ul>
+  {{#each posts}}
+    <li>{{content}} - {{author}}</li>
+  {{/each}}
+</ul>
+<hr>
+<h3>Add a Post</h3>
+<form action="/discussions/{{id}}/posts" method="POST">
+  <textarea name="content" required></textarea><br>
+  <input type="text" name="author" placeholder="Your Name" required><br>
+  <button type="submit">Submit</button>
+</form>
