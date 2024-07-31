@@ -5,17 +5,24 @@ const states = {
 }
 
 var visibilityState = states.hidden;
-var tags = null;
+var userList = [];
 var intervalId = null;
-var signal = false;
 const inputArea =  document.querySelector('#users');
 var metaData = {};
 
+function hideMe(tag){
+    const hideMe = document.querySelector(tag);
+    hideMe.setAttribute('style', 'visibility: hidden');
+    return 0;
+}
+function showMe(tag){
+    const showMe = document.querySelector(tag);
+    showMe.setAttribute('style', 'visibility: visible');
+    return 0;
+}
+
 const chatBtnHandler = async (event) => {
-    // event.preventDefault();
     clearInterval(intervalId);
-    const chatForm = document.querySelector('.chatForm');
-    chatForm.setAttribute('style', 'visibility: hidden');
     inputArea.value = '';
 
     if(visibilityState === states.hidden){
@@ -27,53 +34,54 @@ const chatBtnHandler = async (event) => {
     const messageBoard = document.querySelector('#newMessageBox');
     messageBoard.setAttribute('style', `${visibilityState}`)
 
-    try{
-        const response = await fetch('/api/chat/users');
-
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
+    if(userList.length === 0){
+        try{
+            const response = await fetch('/api/chat/users');
+    
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+    
+            userList = await response.json();
+            userList = userList.map((x) => x.username);
+            userList.sort();
+        } catch(err){
+            console.log(err);
         }
-
-        const json = await response.json();
-        tags = json[0].map((x) => x.username);
-        tags.sort();
-    } catch(err){
-        console.log(err);
     }
-    renderUserBtn(tags)
-    return tags
+   
+    renderUserBtn(userList);
+    return 0;
 }
 
 //search algorithm and helpers
-const searchResults = (tags, search) => {
+const searchResults = (userList, search) => {
     const results = [];
-    for(let i = 0; i < tags.length; i++){
-        if(tags[i].startsWith(search)){
-            results.push(tags[i]);
+    for(let i = 0; i < userList.length; i++){
+        if(userList[i].startsWith(search)){
+            results.push(userList[i]);
         }
     }
     return results;
 }
 
 const renderUserBtn = (users) => {
-  const usersArea = document.querySelector('.usersArea');
-  usersArea.innerHTML = '';
-  const chatForm = document.querySelector('.chatForm');
-  chatForm.setAttribute('style', 'visibility: hidden');
+    const usersArea = document.querySelector('.usersArea');
+    usersArea.innerHTML = '';
+    hideMe('.chatForm');
 
-  for(let i of users){
-      const newBtn = document.createElement('button');
-      newBtn.setAttribute('id', i);
-      newBtn.setAttribute('class', 'btn userBtn col-12');
-      newBtn.innerHTML = i;
-      newBtn.addEventListener('click', userSelectBtnHandler);
-      usersArea.appendChild(newBtn);
-  }
+    for(let i of users){
+        const newBtn = document.createElement('button');
+        newBtn.setAttribute('id', i);
+        newBtn.setAttribute('class', 'btn userBtn col-12');
+        newBtn.innerHTML = i;
+        newBtn.addEventListener('click', userSelectBtnHandler);
+        usersArea.appendChild(newBtn);
+    }
 }
 
 const retrieveConversationMetaData = async (user) => {
-    const chatForm = document.querySelector('.chatForm');
-    chatForm.setAttribute('style', 'visibility: visible');
+    showMe('.chatForm');
     var conversationMetaDate = {};
 
     try{
@@ -109,7 +117,7 @@ const retrieveChatLogs = async (convoId) => {
 const renderText = (side, chat, textArea) => {
     const newText = document.createElement('p');
     newText.innerHTML = chat
-    // newText.setAttribute('class', '')
+
     if(side === 'right') {
         newText.setAttribute('class', 'chat rightSideChat');
     } else if(side === 'left') {
@@ -174,20 +182,24 @@ const renderChatLog = async (metaData) =>{
 
 const inputHandler = (event) => {
     clearInterval(intervalId);
-    const chatForm = document.querySelector('.chatForm');
-    chatForm.setAttribute('style', 'visibility: hidden')
+    hideMe('.chatForm');
     const search = document.querySelector('#users').value.trim();
-    renderUserBtn(searchResults(tags, search));
+    renderUserBtn(searchResults(userList, search));
 }
 
 const chatHandler = async (event) => {
     event.preventDefault();
     const chat = document.querySelector('#chat').value.trim();
     //post chat
+    if(chat.length < 1) {
+        alert('Cannot send empty chat');
+        return 1;
+    }
     //post needs to send a signal
     const userId = metaData.userId.id;
     const otherUserId = metaData.otherUserId.id;
     const conversationId = metaData.convoId.id;
+
     try {
         const response = await fetch('api/chat/chatLogs', {
             method: 'POST',
@@ -208,11 +220,9 @@ const chatHandler = async (event) => {
         console.log(err);
         return
     }
+
     renderChatLog(metaData);
     document.querySelector('#chat').value = '';
-    //run retrieve chat again
-    //retrieve chat should also run when other persons post is made
-
 }
 
 
