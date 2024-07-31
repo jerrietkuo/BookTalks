@@ -8,7 +8,7 @@ const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const helpers = require('./utils/helpers');
 
-const searchbarRoutes = require('./routes/searchbar-routes'); // Import the search routes
+const searchbarRoutes = require('./controllers/api/searchbar-routes'); // Import the search routes
 
 const app = express();
 const PORT = process.env.PORT || 3001;

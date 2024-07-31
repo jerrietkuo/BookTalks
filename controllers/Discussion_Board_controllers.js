@@ -1,5 +1,5 @@
 // controllers/discussionController.js
-const Discussion = require('../models/Discussion');
+const Discussion = require('../models/discussion_board_models');
 const Post = require('../models/Post');
 
 exports.getAllDiscussions = async (req, res) => {

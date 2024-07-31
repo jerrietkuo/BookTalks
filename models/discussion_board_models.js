@@ -1,6 +1,6 @@
 // models/Discussion.js
 const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const sequelize = require('../config/connection');
 const Post = require('./Post');
 
 const Discussion = sequelize.define('Discussion', {

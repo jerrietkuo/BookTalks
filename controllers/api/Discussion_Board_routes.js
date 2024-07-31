@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-const discussionController = require('../controllers/discussionController');
+const discussionController = require('../../controllers/Discussion_Board_controllers');
 
 // Discussion routes
 router.get('/', discussionController.getAllDiscussions);
